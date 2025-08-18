@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-grafana-contact-points
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    grafana_alert: "1"
+data:
+  contactPoints.yaml: |
+    apiVersion: 1
+    contactPoints:
+        - orgId: 1
+          name: devops-team
+          receivers:
+            - uid: devcy3a371dz4a
+              type: email
+              settings:
+                addresses: devops@devops
+                singleEmail: false
+              disableResolveMessage: false
+        - orgId: 1
+          name: backend-team
+          receivers:
+            - uid: bevcy6z59tou8d
+              type: email
+              settings:
+                addresses: backend-team@com
+                singleEmail: false
+              disableResolveMessage: false

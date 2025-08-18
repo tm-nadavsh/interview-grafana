@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-grafana-notification-policy
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    grafana_alert: "1"
+data:
+  notificationPolicies.yaml: |
+    apiVersion: 1
+    policies:
+        - orgId: 1
+          receiver: grafana-default-email
+          group_by:
+            - grafana_folder
+            - alertname
+          routes:
+            - receiver: backend-team
+              object_matchers:
+                - - team
+                  - =
+                  - backend
+            - receiver: devops-team
+              object_matchers:
+                - - team
+                  - =
+                  - devops

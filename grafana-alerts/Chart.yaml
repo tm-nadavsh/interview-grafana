@@ -1,0 +1,6 @@
+apiVersion: v2
+name: grafana-file-alert
+description: Deploys a Grafana file-provisioned alert via ConfigMap for the Grafana alerts sidecar
+type: application
+version: 0.1.0
+appVersion: "1.0"

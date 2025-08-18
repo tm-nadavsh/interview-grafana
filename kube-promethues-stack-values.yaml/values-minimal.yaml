@@ -1,0 +1,32 @@
+# --- turn off extras; keep only Prometheus + Grafana ---
+alertmanager:
+  enabled: false
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: false
+
+defaultRules:
+  create: false   # keep it quiet/simple
+
+# --- Grafana with alerts sidecar for file provisioning ---
+grafana:
+  enabled: true
+  defaultDashboardsEnabled: false
+  sidecar:
+    alerts:
+      enabled: true
+      # watch across the whole cluster and reload automatically
+      searchNamespace: ALL
+      watchMethod: WATCH        # uses the Kubernetes WATCH stream
+      resource: configmap       # (or "both" to allow secrets too)
+      label: grafana_alert      # label key to match
+      labelValue: "1"           # label value to match
+  # optional: set an admin password
+  adminPassword: "admin"
+
+# Prometheus (Operator is required by this chart)
+prometheus:
+  enabled: true
