@@ -6,9 +6,7 @@ This repository contains a minimal Grafana alerting setup intended for an interv
 
 * kube-prometheus-stack installed with only Prometheus + Grafana enabled.
 
-* Grafana alerts sidecar is enabled. It watches ConfigMaps (and/or Secrets) with a specific label and hot-reloads alerting definitions without restarting Grafana.
-
-* Alerts are defined via Grafana file provisioning (YAML embedded in a ConfigMap). Right now there is a single alert that detects pod restarts using the kube_pod_container_status_restarts_total metric (requires kube-state-metrics).
+* Alerts are defined via Grafana file provisioning (YAML embedded in a ConfigMap).
 
 * Notifications currently go to the default contact point(found in *grafna-infra* folder just for reference).
 
@@ -30,7 +28,7 @@ The second release should be for the devops team and include the same as above b
 
 #### Definition Of Done
 1. We want to have 2 helm releases **deployed live on a single cluster!** so we will see the 2 new alerts for both teams with all correct configuration stated.
-2. **IMPORTANT:** Currently this chart is deploying one simple alert for 2 teams, in the future, we will have tens of alerts for a combination of teams and environments and for multiple areas of alerting (pods, cronjobs, databases, argo applications etc...). 
+2. **IMPORTANT:** Currently the alert is deployed via configfile.  
 We want to have next to the *templates* folder an *alerts* folder **from which we load the alerts to the configmap**, this way we can have stracture for our different alerts in the future. 
 **For this exercise create the alert in *alerts/pods-health/pod-restarts.yaml***
 
