@@ -8,7 +8,7 @@ This repository contains a minimal Grafana alerting setup intended for an interv
 
 * Alerts are defined via Grafana file provisioning (YAML embedded in a ConfigMap).
 
-* Notifications currently go to the default contact point(found in *grafna-infra* folder just for reference).
+* Notifications currently go to the devops contact point(found in *grafna-infra* folder just for reference).
 
 ## Your task
 
@@ -16,18 +16,14 @@ Refactor the setup into a **generic Helm-based solution** so the *same* alert ca
 
 * **Namespace** filter used in the alert expression (e.g., kube_pod_container_status_restarts_total{namespace="devops/backend/prod"}).
 
-* **Grafana datasource UID** used by the alert query (e.g., prometheus, so if we have different env's they have different datasource ID).
+* **Alert name,folder,title.uid** (so a team/env specific, human-friendly name appears in Grafana).
 
-* **Alert name/title** (so a team/env specific, human-friendly name appears in Grafana).
+* **Contact point routing** alerts for each team go to the team’s own contact point (i.e., not the global default).
 
-* **Contact point routing** so alerts for each team/env go to the team’s own contact point (i.e., not the global default).
-
-There are currently two contact points, **devops and backend**, We want to have a chart that is deployed twice, the first release should deploy this alert for the backend team with the changes stated above and any more needed.
-
-The second release should be for the devops team and include the same as above but for the devops team.
+There are currently two contact points, **devops and backend**.
 
 #### Definition Of Done
-1. We want to have 2 helm releases **deployed live on a single cluster!** so we will see the 2 new alerts for both teams with all correct configuration stated.
+1. We want to have 2 helm releases **deployed live on the cluster** so we will see the 2 alerts for both teams with all correct configuration stated.
 2. **IMPORTANT:** Currently the alert is deployed via configfile.  
 We want to have next to the *templates* folder an *alerts* folder **from which we load the alerts to the configmap**, this way we can have stracture for our different alerts in the future. 
 **For this exercise create the alert in *alerts/pods-health/pod-restarts.yaml***
