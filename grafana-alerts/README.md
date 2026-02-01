@@ -27,7 +27,7 @@ There are currently two contact points, **devops and backend**.
 2. **IMPORTANT:** Currently the alert is deployed via configfile.  
 We want to have next to the *templates* folder an *alerts* folder **from which we load the alerts to the configmap**, this way we can have stracture for our different alerts in the future. 
 **For this exercise create the alert in *alerts/pods-health/pod-restarts.yaml***
-
+3. Bonus: add to the summary the name of the restarted pod using grafana label: {{ $labels.pod }}
 ## Notes & tips
 * Port forward Grafana service/pod to log in(username and password is admin).
 * Existing alerts can be [exported into YAML via GUI inside Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/export-alerting-resources/#export-from-the-grafana-ui). Alerting -> Alert rules -> choose folder -> More -> Export -> With modifications.

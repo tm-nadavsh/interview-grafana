@@ -40,7 +40,8 @@ data:
               noDataState: OK
               execErrState: Error
               for: 1m
-              annotations: {}
+              annotations:
+                summary: a Pod has restarted.
               labels:
                 team: devops
               isPaused: false
