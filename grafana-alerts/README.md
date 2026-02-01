@@ -34,3 +34,15 @@ We want to have next to the *templates* folder an *alerts* folder **from which w
 * deploy to cluster or template locally using Makefile
 * [glob-patterns](https://helm.sh/docs/chart_template_guide/accessing_files/#glob-patterns)
 * [helm tips and tricks](https://helm.sh/docs/howto/charts_tips_and_tricks)
+
+### Connect to cluster
+Use the provided AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+```
+echo -e "[trustmi-interview]" >> ~/.aws/credentials
+echo -e "aws_access_key_id = YOUR_ACCESS_KEY_ID" >> ~/.aws/credentials
+echo -e "aws_secret_access_key = YOUR_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+export AWS_PROFILE=trustmi-interview
+aws sts get-caller-identity
+# should have response "Arn": "arn:aws:iam::254670365844:user/interview"
+aws eks update-kubeconfig --region us-east-1 --name interview-cluster-qwq
+```
