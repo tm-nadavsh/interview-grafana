@@ -31,5 +31,6 @@ We want to have next to the *templates* folder an *alerts* folder **from which w
 ## Notes & tips
 * Port forward Grafana service/pod to log in(username and password is admin).
 * Existing alerts can be [exported into YAML via GUI inside Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/export-alerting-resources/#export-from-the-grafana-ui). Alerting -> Alert rules -> choose folder -> More -> Export -> With modifications.
+* deploy to cluster or template locally using Makefile
 * [glob-patterns](https://helm.sh/docs/chart_template_guide/accessing_files/#glob-patterns)
 * [helm tips and tricks](https://helm.sh/docs/howto/charts_tips_and_tricks)
